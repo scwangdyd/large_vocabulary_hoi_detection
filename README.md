@@ -17,7 +17,8 @@ This code is built on [Detectron2](https://github.com/facebookresearch/detectron
 Note that you don't need to build detectron2 seperately as this codebase is self-contained. You can follow the instructions
 below to install the dependencies and build this repo. 
 ```bash
-conda create -n choir python=3.8
+conda create -n choir python=3.7
+conda activate choir
 # Install Pytorch >= 1.7
 conda install pytorch==1.7.0 torchvision==0.8.0 cudatoolkit=10.2 -c pytorch
 # Timm (https://github.com/rwightman/pytorch-image-models)
@@ -26,7 +27,7 @@ conda install scipy matplotlib
 # fvcore
 pip install 'git+https://github.com/facebookresearch/fvcore'
 # install LVIS API, for large vocabulary object detection evaluation
-pip install lvis
+pip install lvis pycocotools
 # Build this repo
 python setup.py build develop
 ```
