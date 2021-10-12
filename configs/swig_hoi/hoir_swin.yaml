@@ -1,0 +1,39 @@
+MODEL:
+  META_ARCHITECTURE: "HOIR"
+  WEIGHTS: "./models/converted_swin_imagenet_pretrained.pth"
+  SWIN:
+    OUT_FEATURES: [3]
+  RPN:
+    IN_FEATURES: [3]
+  ROI_HEADS:
+    IN_FEATURES: [3]
+  TRANSFORMER:
+    BASE: "HOITransformer"
+    IN_FEATURES: [3]
+    LOSSES: ["labels", "boxes", "actions_focal"]
+    SCORE_THRESH_TEST: 0.0001
+    QUERIES_PER_IMAGE: 5
+    DUPLICATES_PER_QUERY: 20
+    NUM_OBJECT_CLASSES: 1000
+    NUM_ACTION_CLASSES: 407
+    SET_COST_CLASS: 5.
+DATASETS:
+  TRAIN: ("swig_train", )
+  TEST: ("swig_dev", )
+SOLVER:
+  IMS_PER_BATCH: 2
+  BASE_LR: 0.0001
+  STEPS: (140000, 180000, )
+  MAX_ITER: 200000
+INPUT:
+  MAX_SIZE_TRAIN: 1120
+  MIN_SIZE_TEST: 800
+  MAX_SIZE_TEST: 1120
+TEST:
+  EVAL_TASKS: ("bbox", "hoi")
+  USE_FAST_IMPL: True
+DATALOADER:
+  SAMPLER_TRAIN: "HOIRepeatFactorTrainingSampler"
+  REPEAT_THRESHOLD: 0.005
+OUTPUT_DIR: "./output/swig_hoi_hoir"
+VERSION: 2

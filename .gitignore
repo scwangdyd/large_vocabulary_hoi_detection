@@ -1,0 +1,21 @@
+# Pretrained models
+models/
+models/*.pkl
+models/*.pth
+
+# compilation and distribution
+.vscode/
+__pycache__/
+_ext
+*.py[cod]
+*.pyc
+*.so
+build/
+dist/
+wheels/
+*.egg-info/
+*.egg/
+*.pkl
+
+# outputs
+output/*
