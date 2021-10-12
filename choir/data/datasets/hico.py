@@ -48,7 +48,7 @@ def load_hico_json(json_file: str, image_root: str, dataset_name: str = None):
         # The categories in a custom json file may not be sorted.
         thing_classes = meta.thing_classes
         action_classes = meta.action_classes
-        id_map = meta.thing_dataset_id_to_contiguous_idd
+        id_map = meta.thing_dataset_id_to_contiguous_id
 
     dataset_dicts = []
     images_without_valid_annotations = []
@@ -61,7 +61,6 @@ def load_hico_json(json_file: str, image_root: str, dataset_name: str = None):
         
         if len(anno_dict["box_annotations"]) == 0 or len(anno_dict["hoi_annotations"]) == 0:
             images_without_valid_annotations.append(anno_dict)
-            dataset_dicts.append(record)
             continue
 
         boxes = convert_xyxy_to_xywh([obj["bbox"] for obj in anno_dict["box_annotations"]])

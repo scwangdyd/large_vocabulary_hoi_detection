@@ -297,7 +297,6 @@ class HICOEvaluator(DatasetEvaluator):
         res = {}
         res_iou50 = {}
         areas = {"all": "", "small": "s", "medium": "m", "large": "l"}
-        # areas = {"medium": "m"}
         for limit in [10, 20, 50]:
             for area, suffix in areas.items():
                 stats = _evaluate_box_proposals(predictions, self._coco_api, area=area, limit=limit)
@@ -452,13 +451,12 @@ class HICOEvaluator(DatasetEvaluator):
         nonrare_interaction_ids = np.setdiff1d(valid_interaction_ids, rare_interaction_ids)
         rare_interaction_ids = np.intersect1d(rare_interaction_ids, valid_interaction_ids)
 
-        full_map_withnon = np.mean(hico_ap)
         full_map = np.mean(hico_ap[valid_interaction_ids])
         rare_map = np.mean(hico_ap[rare_interaction_ids])
         non_rare_map = np.mean(hico_ap[nonrare_interaction_ids])
         
-        self._logger.info("Default {}: full-wnon {:.2f}, full {:.2f}, rare {:.2f}, non-rare {:.2f}".format(
-            area, full_map_withnon * 100., full_map * 100., rare_map * 100., non_rare_map * 100.))
+        self._logger.info("Default {}: full {:.2f}, rare {:.2f}, non-rare {:.2f}".format(
+            area, full_map * 100., rare_map * 100., non_rare_map * 100.))
 
 
 def instances_to_coco_json(instances, img_id, max_dets=100):
@@ -586,10 +584,6 @@ def _evaluate_box_proposals(dataset_predictions, coco_api, thresholds=None, area
             overlaps[box_ind, :] = -1
             overlaps[:, gt_ind] = -1
 
-        # to delete
-        # if not all(_gt_overlaps > 0.5):
-        #     print("image_id {}, {}".format(prediction_dict["image_id"], _gt_overlaps))
-
         # append recorded iou coverage level
         gt_overlaps.append(_gt_overlaps)
     gt_overlaps = (
@@ -641,21 +635,13 @@ def write_results_hico_format(images, results, file_path):
         file_path (String): savefile name
     """
     assert len(images) == len(results)
-    # dets = [[] for _ in range(9658)]
 
-    # with open("/raid1/suchen/repo/fshoitx/output/hico_test_image_map.pkl", "rb") as f:
-    #     img_name_to_id_map = pickle.load(f)
-    
-    # for img_id, results_per_image in zip(images, results):
-    #     dets[img_name_to_id_map[img_id]] = results_per_image
-
-    dets = [[] for _ in range(40000)]
+    dets = [[] for _ in range(10000)]
     for img_id, results_per_image in zip(images, results):
         dets[img_id] = results_per_image
     
     with open(file_path, "wb") as f:
         pickle.dump(dets, f)
-    # sio.savemat(file_path, mdict={'dets': dets})
 
 
 def prepare_hico_gts(dataset_name, output_file, allow_cached=True):
@@ -702,7 +688,6 @@ def convert_to_hico_dict(dataset_name):
         coco_dict: serializable dict in COCO json format
     """    
     dataset_dicts = DatasetCatalog.get(dataset_name)
-    # dataset_dicts = dataset_dicts[3000:6000]
     metadata = MetadataCatalog.get(dataset_name)
     
     reverse_id_mapping = {v: k for k, v in metadata.thing_dataset_id_to_contiguous_id.items()}
@@ -790,7 +775,6 @@ def convert_to_coco_dict(dataset_name):
     logger = logging.getLogger(__name__)
 
     dataset_dicts = DatasetCatalog.get(dataset_name)
-    # dataset_dicts = dataset_dicts[3000:6000]
     metadata = MetadataCatalog.get(dataset_name)
 
     # unmap the category mapping ids for COCO

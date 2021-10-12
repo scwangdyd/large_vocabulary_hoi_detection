@@ -30,11 +30,11 @@ _PREDEFINED_SPLITS_HICO = {}
 _PREDEFINED_SPLITS_HICO["hico-det"] = {
     "hico-det_train": (
         "hico_20160224_det/images/train2015",
-        "hico_20160224_det/annotations/hico_trainval.json",
+        "hico_20160224_det/annotations/processed_hico_trainval.json",
     ),
     "hico-det_test": (
         "hico_20160224_det/images/test2015",
-        "hico_20160224_det/annotations/hico_test.json",
+        "hico_20160224_det/annotations/ppdm_hico_test.json",
     ),
 }
 

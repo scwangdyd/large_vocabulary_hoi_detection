@@ -21,7 +21,7 @@ DATASETS:
   TRAIN: ("swig_train", )
   TEST: ("swig_dev", )
 SOLVER:
-  IMS_PER_BATCH: 2
+  IMS_PER_BATCH: 16
   BASE_LR: 0.0001
   STEPS: (140000, 180000, )
   MAX_ITER: 200000

@@ -1,0 +1,44 @@
+MODEL:
+  META_ARCHITECTURE: "CHOIR"
+  WEIGHTS: "./models/converted_swin_imagenet_pretrained.pth"
+  SWIN:
+    OUT_FEATURES: [1,2,3]
+  FPN:
+    IN_FEATURES: [1,2,3]
+  RPN:
+    IN_FEATURES: [3]
+  ROI_HEADS:
+    IN_FEATURES: [3]
+  TRANSFORMER:
+    BASE: "CascadeHOITransformer"
+    IN_FEATURES: [1, 2, 3]
+    LOSSES: ["labels", "boxes", "actions_focal"]
+    SCORE_THRESH_TEST: 0.0001
+    DETECTIONS_PER_IMAGE: 1000
+    QUERIES_PER_IMAGE: 10
+    DUPLICATES_PER_QUERY: 20
+    NUM_OBJECT_CLASSES: 80
+    NUM_ACTION_CLASSES: 117
+    VALUE_WITH_POS: True
+DATASETS:
+  TRAIN: ("hico-det_train", )
+  TEST: ("hico-det_test", )
+SOLVER:
+  IMS_PER_BATCH: 16
+  BASE_LR: 0.0001
+  STEPS: (140000, 180000, )
+  MAX_ITER: 200000
+  CHECKPOINT_PERIOD: 10000
+INPUT:
+  MAX_SIZE_TRAIN: 1280
+  MIN_SIZE_TEST: 800
+  MAX_SIZE_TEST: 1280
+TEST:
+  EVAL_TASKS: ("bbox", "hoi", )
+  USE_FAST_IMPL: True
+DATALOADER:
+  SAMPLER_TRAIN: "HOIRepeatFactorTrainingSampler"
+  REPEAT_THRESHOLD: 0.005
+  NUM_WORKERS: 1
+OUTPUT_DIR: "./output/hico_det_choir"
+VERSION: 2

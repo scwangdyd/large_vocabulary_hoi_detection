@@ -100,7 +100,7 @@ def print_instances_class_histogram(dataset_dicts, class_names):
     histogram = np.zeros((num_classes,), dtype=np.int)
     for entry in dataset_dicts:
         annos = entry["annotations"]
-        classes = [x["category_id"] for x in annos if not x.get("iscrowd", 0)]
+        classes = [x["category_id"] for x in annos if "category_id" in x]
         histogram += np.histogram(classes, bins=hist_bins)[0]
         
         if len(annos) > 0 and annos[0].get("interaction", 0):

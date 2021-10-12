@@ -107,6 +107,8 @@ class HOITransformer(nn.Module):
             "activation": cfg.MODEL.TRANSFORMER.ACTIVATION,
             "num_classes": cfg.MODEL.TRANSFORMER.NUM_OBJECT_CLASSES,
             "num_actions": cfg.MODEL.TRANSFORMER.NUM_ACTION_CLASSES,
+            "test_score_thresh": cfg.MODEL.TRANSFORMER.SCORE_THRESH_TEST,
+            "detections_per_image": cfg.MODEL.TRANSFORMER.DETECTIONS_PER_IMAGE,
             "value_with_pos": cfg.MODEL.TRANSFORMER.VALUE_WITH_POS,
             "set_criterion": SetCriterion(cfg)
         }
@@ -213,12 +215,12 @@ class HOITransformer(nn.Module):
         }
         
         if self.set_criterion.aux_loss:
-            predictions["aux_outputs"] = self._set_aux_loss(scores, boxes, actions)
+            predictions["aux_outputs"] = self.aux_preds(scores, boxes, actions)
 
         return predictions
 
     @torch.jit.unused
-    def _set_aux_loss(self, scores: Tensor, boxes: Tensor, actions: Tensor):
+    def aux_preds(self, scores: Tensor, boxes: Tensor, actions: Tensor):
         # this is a workaround to make torchscript happy, as torchscript doesn't support dictionary
         # with non-homogeneous values, such as a dict having both a Tensor and a list.
         return [{'pred_logits': a, 'pred_boxes': b, "pred_actions": c}

@@ -472,9 +472,9 @@ _C.MODEL.TRANSFORMER.VALUE_WITH_POS = False
 # detections that will slow down inference post processing steps (like NMS)
 # A default threshold of 0.0 increases AP by ~0.2-0.3 but significantly slows down
 # inference.
-_C.MODEL.TRANSFORMER.SCORE_THRESH_TEST = 0.05
+_C.MODEL.TRANSFORMER.SCORE_THRESH_TEST = 0.001
 
-_C.MODEL.TRANSFORMER.DETECTIONS_PER_IMAGE = 2000
+_C.MODEL.TRANSFORMER.DETECTIONS_PER_IMAGE = 300
 
 _C.MODEL.TRANSFORMER.ACTIVATION = "relu"
 

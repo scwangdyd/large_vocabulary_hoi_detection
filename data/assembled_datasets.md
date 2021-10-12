@@ -31,7 +31,7 @@ The assembled SWiG-HOI extracts human interactions with 1,000 object categories 
 ]
 ```
 
-This file [swig_v1_meta.py](https://github.com/scwangdyd/large_vocabulary_hoi_detection/choir/data/datasets/swig_v1_meta.py) includes more meta information about the extracted SWiG-HOI. Below are some examples to show the metadata.
+This file [swig_v1_meta.py](https://github.com/scwangdyd/large_vocabulary_hoi_detection/blob/master/choir/data/datasets/swig_v1_meta.py) includes more meta information about the extracted SWiG-HOI. Below are some examples to show the metadata.
 
 SWiG objects:
 ```
