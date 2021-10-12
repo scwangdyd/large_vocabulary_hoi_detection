@@ -1,7 +1,7 @@
 
 ## SWiG-HOI
 The assembled SWiG-HOI extracts human interactions with 1,000 object categories from the [SWiG](https://github.com/allenai/swig) dataset. After the filtering, ~400 verbs are kept. The processed annotations are stored in a JSON format for train, test and dev (the split is consistent with original SWiG). Below is an example annotation for one image.
-```json
+```
 [
     "file_name": "wrapping_196.jpg",
     "img_id": 745,
@@ -34,7 +34,7 @@ The assembled SWiG-HOI extracts human interactions with 1,000 object categories 
 This file [swig_v1_meta.py](https://github.com/scwangdyd/large_vocabulary_hoi_detection/choir/data/datasets/swig_v1_meta.py) includes more meta information about the extracted SWiG-HOI. Below are some examples to show the metadata.
 
 SWiG objects:
-```json
+```
     {
         "gloss": ["bicycle", "bike", "wheel", "cycle"],
         "def": "a wheeled vehicle that has two wheels and is moved by foot pedals",
@@ -45,7 +45,7 @@ SWiG objects:
 ```
 SWiG actions:
 
-```json
+```
     {
         "id": 272,
         "name": "riding",
@@ -54,7 +54,7 @@ SWiG actions:
     }
 ```
 SWiG interactions:
-```json
+```
     {
         "id": 207,
         "name": "riding bicycle",

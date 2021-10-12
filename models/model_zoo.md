@@ -8,6 +8,7 @@ This page includes the experimental results and pre-trained models available for
 | HOIR (Res101)|     |      |        |      |         |
 | HOIR (Swin) |   15.41  |   14.20   |    18.04    |    4.80  | [configs](https://github.com/scwangdyd/large_vocabulary_hoi_detection/configs/swig_hoi/hoir_swin.yaml) \| [model](https://drive.google.com/file/d/1-MG9Ef7uXgmVWwM_OppXap1ecvWgowcy/view?usp=sharing)        |
 | CHOIR (Res101-FPN) |     |     |        |     | [configs]() \| [model]()        |
+| CHOIR (Swin) |     |     |        |     | [configs]() \| [model]()        |
 
 
 ## HICO-DET
@@ -17,4 +18,5 @@ Our model mainly aims to detect the human interactions with objects. In the HICO
 |:-----------:|:--------:|:--------:|:-----------:|:---------:|
 | HOIR (Res101) |     |      |       | [configs]() \| [model]()        |
 | HOIR (Swin) |     |      |       | [configs]() \| [model]()        |
+| CHOIR (Res101-FPN) |     |      |       | [configs]() \| [model]()        |
 | CHOIR (Swin) |     |      |       | [configs]() \| [model]()        |

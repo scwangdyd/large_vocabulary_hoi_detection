@@ -33,7 +33,7 @@ python setup.py build develop
 
 ### Inference Demo with Pre-trained Models
 
-Pick a model and its config file from [model zoo](https://github.com/scwangdyd/large_vocabulary_hoi_detection/models/model_zoo.md), for example, using `configs/swig_hoi/hoir_swin.yaml` and this [model](https://drive.google.com/file/d/1-MG9Ef7uXgmVWwM_OppXap1ecvWgowcy/view?usp=sharing). Run it with:
+Pick a model and its config file from [model zoo](https://github.com/scwangdyd/large_vocabulary_hoi_detection/blob/master/models/model_zoo.md), for example, using `configs/swig_hoi/hoir_swin.yaml` and this [model](https://drive.google.com/file/d/1-MG9Ef7uXgmVWwM_OppXap1ecvWgowcy/view?usp=sharing). Run it with:
 ```
 python tools/demo.py --config-file configs/swig_hoi/hoir_swin.yaml \
   --input figures/example*.jpg \
