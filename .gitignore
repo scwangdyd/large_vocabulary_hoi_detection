@@ -1,5 +1,4 @@
 # Pretrained models
-models/
 models/*.pkl
 models/*.pth
 
