@@ -1,5 +1,6 @@
 # large_vocabulary_hoi_detection
 Code for ICCV2021: Discovering Human Interactions with Large-Vocabulary Objects via Query and Multi-Scale Detection
+[[paper]](https://openaccess.thecvf.com/content/ICCV2021/papers/Wang_Discovering_Human_Interactions_With_Large-Vocabulary_Objects_via_Query_and_Multi-Scale_ICCV_2021_paper.pdf)
 
 
 ## Assembled Datasets
